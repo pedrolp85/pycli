@@ -1,14 +1,12 @@
-from input.file import ReverseFileInput
-from input.stdin import StdinInput
+from input import get_input
 
 import fileinput
+from pathlib import Path
 
 if __name__ == "__main__":
 
-    path = "example.txt"
-    #file_example = ReverseFileInput()
-    stdin_example = StdinInput()
+    path = Path(__file__).parent / "tests/unit/input/fixtures/example.txt"
     
-    for a in stdin_example.get_lines():
+    for a in get_input(file_path=path, file_reversed=True).get_lines():
        print(a)
 
