@@ -2,12 +2,14 @@ from io import StringIO, SEEK_END
 from pathlib import Path
 from typing import Iterator, TextIO
 
-class FileInput:
+from .input import Input
+
+class FileInput(Input):
 
     def __init__(self, file_path: str) -> None:
         self._file_path = file_path
 
-    def get_lines(self):
+    def get_lines(self) -> Iterator[str]:
         with open(self._file_path, "r") as file:
             line = "start"
             while line:
@@ -15,12 +17,12 @@ class FileInput:
                 if line:
                     yield line.rstrip("\n")
 
-class ReverseFileInput:
+class ReverseFileInput(Input):
 
     def __init__(self, file_path: str) -> None:
         self._file_path = file_path
 
-    def get_lines(self):
+    def get_lines(self) -> Iterator[str]:
         buffer = 100
         with open(self._file_path, "r") as file:
             file_end_pos = file.seek(0, SEEK_END)

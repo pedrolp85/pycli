@@ -1,8 +1,10 @@
+from typing import Iterator
+from abc import ABCMeta, abstractmethod
 
-
-class Input:
+class Input(metaclass=ABCMeta):
 
     @abstractmethod
-    def next_line() ->
+    def get_lines(self) -> Iterator[str]:
+        pass
 
 
